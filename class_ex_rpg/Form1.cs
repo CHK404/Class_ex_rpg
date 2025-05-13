@@ -17,7 +17,6 @@ namespace class_ex_rpg
             InitializeComponent();
 
             User user = new User();
-            Monster monster = new Monster();
 
             Console.Write("이름을 입력하세요: ");
             user.userName = Console.ReadLine();
@@ -25,29 +24,17 @@ namespace class_ex_rpg
             user.SelectClass(user);
             if (user.job == "전사")
             {
-                user = new Warrior();
+                user = new Warrior(user);
             }
             else if (user.job == "마법사")
             {
-                user = new Mage();
+                user = new Mage(user);
             }
             user.userInfo(user);
             user.currentStatus();
 
-            monster.randomEncounter();
-            if (monster is Orc orc)
-            {
-                monster = new Orc();
-            }
-            else if (monster is Slime slime)
-            {
-                monster = new Slime();
-            }
-
-            if (monster.health == 0)
-            {
-                monster.randomEncounter();
-            }else
+            Monster monster = Monster.RandomEncounter();
+            if (monster.health != 0)
             {
                 user.chooseAct(user, monster);
                 monster.monsterAttack(user, monster);
