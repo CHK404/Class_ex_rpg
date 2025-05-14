@@ -87,6 +87,8 @@ namespace class_ex_rpg
                 monster.monsDie(monster);
                 Console.WriteLine($"{userName}의 현재 체력은 {user.health}입니다.");
                 Console.WriteLine($"토벌에 성공하였습니다!");
+                user.LevelUp(user);
+                user.currentStatus();
                 return;
             }
             Console.WriteLine("행동을 선택하세요. 1. 기본 공격 2. 스킬 공격 3. 버프");
@@ -127,8 +129,21 @@ namespace class_ex_rpg
             Console.WriteLine($"{userName}이(가) 사망했습니다...");
             Console.WriteLine($"게임을 종료합니다...");
         }
-        public void LevelUp()
+        public void LevelUp(User user)
         {
+            string[] input = Console.ReadLine().Split(' ');
+            if (input.Length == 2)
+            {
+                int hp = int.Parse(input[0]);
+                int power = int.Parse(input[1]);
+            }else if (input.Length == 1)
+            {
+                int hp = int.Parse(input[0]);
+            }else
+            {
+                Console.WriteLine("잘못된 입력입니다.");
+            }
+            user.health += this.hp;
 
         }
     }
