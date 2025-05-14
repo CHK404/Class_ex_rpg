@@ -10,7 +10,6 @@ namespace class_ex_rpg
 {
     public class NPC
     {
-        public int attack { get; set; } = 20;
         public string npcJob { get; set; }
 
         public void npcChoice(User user, Monster monster, NPC npc)
@@ -54,7 +53,7 @@ namespace class_ex_rpg
             public int healAmount { get; set; }
             public override void npcAction(User user, Monster monster, NPC npc)
             {
-                healAmount = 10;
+                healAmount = 20;
                 Console.WriteLine($"{user.userName}의 체력이 {healAmount}만큼 증가했습니다.");
                 user.health += healAmount;
             }
@@ -82,7 +81,7 @@ namespace class_ex_rpg
             public int debuffAmount { get; set; }
             public override void npcAction(User user, Monster monster, NPC npc)
             {
-                debuffAmount = 2;
+                debuffAmount = 3;
                 Console.WriteLine($"{monster.monsterName}의 공격력이 {debuffAmount}만큼 감소했습니다.");
                 monster.attack -= debuffAmount;
             }

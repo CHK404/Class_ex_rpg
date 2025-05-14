@@ -29,7 +29,7 @@ namespace class_ex_rpg
                 if (select == "1")
                 {
                     user.job = "전사";
-                    health += 200;
+                    health += 100;
                     break;
                 }else if (select == "2")
                 {
@@ -90,7 +90,8 @@ namespace class_ex_rpg
                 user.currentStatus();
                 return;
             }
-            Console.WriteLine("행동을 선택하세요. 1. 기본 공격 2. 스킬 공격 3. 버프");
+            Console.WriteLine("\r\n행동을 선택하세요. 1. 기본 공격 2. 스킬 공격 3. 버프");
+            Console.WriteLine("================================================================================");
             string select = Console.ReadLine();
 
             if (select == "1")
@@ -131,14 +132,14 @@ namespace class_ex_rpg
         public void LevelUp(User user)
         {
             Console.WriteLine($"{user.userName}이(가) 레벨업했습니다");
-            Console.WriteLine("체력과 공격력을 입력하세요 (ex. 2 3)");
+            Console.WriteLine("추가 체력과 공격력을 입력하세요 (ex. 2 3)");
             Console.WriteLine("과한 욕심은 화를 불러올 수 있습니다..");
             string[] input = Console.ReadLine().Split(' ');
             if (input.Length == 2)
             {
                 int hp = int.Parse(input[0]);
                 int power = int.Parse(input[1]);
-                if (hp > 10 || power > 10)
+                if (hp > 10 || power > 5)
                 {
                     user.health = 0;
                     return;
@@ -150,7 +151,7 @@ namespace class_ex_rpg
             else if (input.Length == 1)
             {
                 int hp = int.Parse(input[0]);
-                if (hp > 10)
+                if (hp > 20)
                 {
                     user.health = 0;
                     return;
@@ -183,15 +184,15 @@ namespace class_ex_rpg
 
         public override void skillAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 검으로 {monster.monsterName}을(를) 강하게 내리쳐 {this.attack * 2}의 데미지를 입혔습니다.");
-            monster.monsDamage(this.attack * 2);
+            Console.WriteLine($"{userName}이(가) 검으로 {monster.monsterName}을(를) 강하게 내리쳐 {this.attack + 5}의 데미지를 입혔습니다.");
+            monster.monsDamage(this.attack + 5);
             monster.monsterAttack(user, monster);
         }
 
         public override void buff(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 사기를 올려 공격력을 {this.attack + 3}으로 증가시켰습니다.");
-            this.attack += 3;
+            Console.WriteLine($"{userName}이(가) 사기를 올려 체력을 {this.health + 10}으로 증가시켰습니다.");
+            this.health += 10;
             monster.monsterAttack(user, monster);
         }
     }
@@ -213,8 +214,8 @@ namespace class_ex_rpg
         }
         public override void skillAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 거대한 불꽃을 소환해 {monster.monsterName}에게 {this.attack * 3}의 데미지를 입혔습니다.");
-            monster.monsDamage(this.attack * 3);
+            Console.WriteLine($"{userName}이(가) 거대한 불꽃을 소환해 {monster.monsterName}에게 {this.attack * 2}의 데미지를 입혔습니다.");
+            monster.monsDamage(this.attack * 2);
             monster.monsterAttack(user, monster);
         }
         public override void buff(User user, Monster monster)

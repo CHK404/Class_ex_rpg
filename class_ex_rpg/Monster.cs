@@ -75,8 +75,8 @@ namespace class_ex_rpg
         public Orc()
         {
             this.monsterName = "오크";
-            this.attack = 10;
-            this.health = 200;
+            this.attack = 5;
+            this.health = 250;
         }
 
         public override void monsAttack(User user, Monster monster)
@@ -103,8 +103,8 @@ namespace class_ex_rpg
         public Slime()
         {
             this.monsterName = "슬라임";
-            this.attack = 15;
-            this.health = 150;
+            this.attack = 20;
+            this.health = 100;
         }
 
         public override void monsAttack(User user, Monster monster)
@@ -114,10 +114,10 @@ namespace class_ex_rpg
         }
         public override void monsAction(User user, Monster monster)
         {
-            if (user.attack >= 3)
+            if (user.attack >= 4)
             {
-                Console.WriteLine($"{monsterName}이(가) 점액을 발사해 {user.userName}의 공격력을 2 감소시켰습니다.");
-                user.attack -= 2;
+                Console.WriteLine($"{monsterName}이(가) 점액을 발사해 {user.userName}의 공격력을 3 감소시켰습니다.");
+                user.attack -= 3;
             }
             else
             {
