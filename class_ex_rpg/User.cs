@@ -139,7 +139,7 @@ namespace class_ex_rpg
             {
                 int hp = int.Parse(input[0]);
                 int power = int.Parse(input[1]);
-                if (hp > 10 || power > 5)
+                if (hp + power > 19)
                 {
                     user.health = 0;
                     return;
@@ -151,7 +151,7 @@ namespace class_ex_rpg
             else if (input.Length == 1)
             {
                 int hp = int.Parse(input[0]);
-                if (hp > 20)
+                if (hp > 17)
                 {
                     user.health = 0;
                     return;
@@ -177,21 +177,21 @@ namespace class_ex_rpg
         }
         public override void baseAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 검으로 {monster.monsterName}을(를) 공격해 {this.attack}의 데미지를 입혔습니다.");
+            Console.WriteLine($"{userName}이(가) 검으로 {monster.monsterName}을(를) 베어 {this.attack}의 데미지를 입혔습니다.");
             monster.monsDamage(this.attack);
             monster.monsterAttack(user, monster);
         }
 
         public override void skillAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 검으로 {monster.monsterName}을(를) 강하게 내리쳐 {this.attack + 5}의 데미지를 입혔습니다.");
+            Console.WriteLine($"{userName}이(가) 검을 강하게 내리쳐 {monster.monsterName}에게 {this.attack + 5}의 데미지를 입혔습니다.");
             monster.monsDamage(this.attack + 5);
             monster.monsterAttack(user, monster);
         }
 
         public override void buff(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 사기를 올려 체력을 {this.health + 10}으로 증가시켰습니다.");
+            Console.WriteLine($"{userName}이(가) 굳센 결의로 몸을 일으킨다. 체력이 10 상승합니다.");
             this.health += 10;
             monster.monsterAttack(user, monster);
         }
@@ -208,19 +208,19 @@ namespace class_ex_rpg
         }
         public override void baseAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 마법으로 {monster.monsterName}을(를) 공격해 {this.attack}의 데미지를 입혔습니다.");
+            Console.WriteLine($"{userName}이(가) 작은 얼음 조각을 생성해 {monster.monsterName}에게 {this.attack}의 데미지를 입혔습니다.");
             monster.monsDamage(this.attack);
             monster.monsterAttack(user, monster);
         }
         public override void skillAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 거대한 불꽃을 소환해 {monster.monsterName}에게 {this.attack * 2}의 데미지를 입혔습니다.");
+            Console.WriteLine($"{userName}이(가) 거대한 불덩이를 소환해 {monster.monsterName}에게 {this.attack * 2}의 데미지를 입혔습니다.");
             monster.monsDamage(this.attack * 2);
             monster.monsterAttack(user, monster);
         }
         public override void buff(User user, Monster monster)
         {
-            Console.WriteLine($"{userName}이(가) 정신을 집중해 공격력을 {this.attack + 5}으로 증가시켰습니다.");
+            Console.WriteLine($"{userName}이(가) 정신을 집중해 마음을 가다듬습니다. 공격력이 5 상승합니다.");
             this.attack += 5;
             monster.monsterAttack(user, monster);
         }
