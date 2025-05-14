@@ -81,17 +81,17 @@ namespace class_ex_rpg
 
         public override void monsAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{monsterName}이(가) 공격하여 {this.attack}의 데미지를 입혔습니다.");
+            Console.WriteLine($"{monsterName}가 몽둥이를 휘둘러 {this.attack}의 데미지를 입혔습니다.");
             user.userDamage(this.attack);
         }
         public override void monsAction(User user, Monster monster)
         {
-            Console.WriteLine($"{monsterName}이(가) 포효해 공격력이 {this.attack}만큼 증가합니다.");
+            Console.WriteLine($"{monsterName}가 포효합니다. 공격력이 {this.attack}만큼 증가합니다.");
             this.attack *= 2;
         }
         public override void monsDie(Monster monster)
         {
-            Console.WriteLine($"{monsterName}을(를) 처치했습니다.");
+            Console.WriteLine($"{monsterName}를 처치했습니다.");
         }
         public override void Talk()
         {
@@ -109,25 +109,25 @@ namespace class_ex_rpg
 
         public override void monsAttack(User user, Monster monster)
         {
-            Console.WriteLine($"{monsterName}이(가) 공격하여 {this.attack}의 데미지를 입혔습니다.");
+            Console.WriteLine($"{monsterName}이 몸을 던져 {this.attack}의 데미지를 입혔습니다.");
             user.userDamage(this.attack);
         }
         public override void monsAction(User user, Monster monster)
         {
             if (user.attack >= 4)
             {
-                Console.WriteLine($"{monsterName}이(가) 점액을 발사해 {user.userName}의 공격력을 3 감소시켰습니다.");
+                Console.WriteLine($"{monsterName}이 독성 점액을 발사합니다. {user.userName}의 공격력이 3 감소합니다.");
                 user.attack -= 3;
             }
             else
             {
-                Console.WriteLine($"{monsterName}이(가) 점액을 발사해 {user.userName}의 공격력을 1로 감소시켰습니다.");
+                Console.WriteLine($"{monsterName}이 독성 점액을 발사합니다. {user.userName}의 공격력이 1로 감소합니다.");
                 user.attack = 1;
             }
         }
         public override void monsDie(Monster monster)
         {
-            Console.WriteLine($"{monsterName}을(를) 처치했습니다.");
+            Console.WriteLine($"{monsterName}을 처치했습니다.");
         }
         public override void Talk()
         {

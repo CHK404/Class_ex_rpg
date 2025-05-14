@@ -41,7 +41,7 @@ namespace class_ex_rpg
         }
         public void Talk(User user)
         {
-            MessageBox.Show($"{user.userName}용사님 몬스터를 무찔러주세요.");
+            MessageBox.Show($"{user.userName} 용사님 몬스터를 무찔러주세요.");
         }
         public virtual void npcAction(User user, Monster monster, NPC npc) { }
         public class Healer : NPC
