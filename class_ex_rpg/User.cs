@@ -29,7 +29,7 @@ namespace class_ex_rpg
                 if (select == "1")
                 {
                     user.job = "전사";
-                    health += 100;
+                    health += 200;
                     break;
                 }else if (select == "2")
                 {
@@ -79,7 +79,6 @@ namespace class_ex_rpg
         {
             if (user.health <= 0)
             {
-                user.userLoss();
                 return;
             }
             if (monster.health <= 0)
@@ -131,20 +130,39 @@ namespace class_ex_rpg
         }
         public void LevelUp(User user)
         {
+            Console.WriteLine($"{user.userName}이(가) 레벨업했습니다");
+            Console.WriteLine("체력과 공격력을 입력하세요 (ex. 2 3)");
+            Console.WriteLine("과한 욕심은 화를 불러올 수 있습니다..");
             string[] input = Console.ReadLine().Split(' ');
             if (input.Length == 2)
             {
                 int hp = int.Parse(input[0]);
                 int power = int.Parse(input[1]);
-            }else if (input.Length == 1)
+                if (hp > 10 || power > 10)
+                {
+                    user.health = 0;
+                    return;
+                }
+                user.health += hp;
+                user.attack += power;
+                return;
+            }
+            else if (input.Length == 1)
             {
                 int hp = int.Parse(input[0]);
-            }else
+                if (hp > 10)
+                {
+                    user.health = 0;
+                    return;
+                }
+                user.health += hp;
+                return;
+            }
+            else
             {
                 Console.WriteLine("잘못된 입력입니다.");
+                LevelUp(user);
             }
-            user.health += this.hp;
-
         }
     }
     public class Warrior : User

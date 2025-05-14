@@ -86,8 +86,8 @@ namespace class_ex_rpg
         }
         public override void monsAction(User user, Monster monster)
         {
-            Console.WriteLine($"{monsterName}이(가) 포효해 공격력이 5만큼 증가합니다.");
-            this.attack += 5;
+            Console.WriteLine($"{monsterName}이(가) 포효해 공격력이 {this.attack}만큼 증가합니다.");
+            this.attack *= 2;
         }
         public override void monsDie(Monster monster)
         {
@@ -114,10 +114,10 @@ namespace class_ex_rpg
         }
         public override void monsAction(User user, Monster monster)
         {
-            if (user.attack >= 6)
+            if (user.attack >= 3)
             {
-                Console.WriteLine($"{monsterName}이(가) 점액을 발사해 {user.userName}의 공격력을 5 감소시켰습니다.");
-                user.attack -= 5;
+                Console.WriteLine($"{monsterName}이(가) 점액을 발사해 {user.userName}의 공격력을 2 감소시켰습니다.");
+                user.attack -= 2;
             }
             else
             {

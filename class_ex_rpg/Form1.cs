@@ -35,14 +35,24 @@ namespace class_ex_rpg
             user.currentStatus();
 
             Monster monster = Monster.RandomEncounter();
-            monster.Talk();
-            npc.npcChoice(user, monster, npc);
 
-            if (monster.health != 0 && user.health != 0)
+            while (user.health > 0)
             {
-                user.chooseAct(user, monster);
-                monster.monsterAttack(user, monster);
+                monster.Talk();
+                npc.npcChoice(user, monster, npc);
+
+                while (monster.health > 0 && user.health > 0)
+                {
+                    user.chooseAct(user, monster);
+                    monster.monsterAttack(user, monster);
+                }
+                if (user.health > 0) 
+                {
+                    Console.WriteLine("새로운 몬스터가 나타났습니다!");
+                    monster = Monster.RandomEncounter();
+                }
             }
+            user.userLoss();
         }
     }
 }
