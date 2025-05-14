@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace class_ex_rpg
@@ -35,6 +36,7 @@ namespace class_ex_rpg
         public virtual void monsAttack(User user, Monster monster) { }
         public virtual void monsAction(User user, Monster monster) { }
         public virtual void monsDie(Monster monster) { }
+        public virtual void Talk() { }
         public void monsterAttack(User user, Monster monster)
         {
             if (monster.health <= 0)
@@ -52,11 +54,13 @@ namespace class_ex_rpg
                 {
                     monster.monsAttack(user, monster);
                     user.currentStatus();
+                    monster.monsterInfo();
                 }
                 else if (randomNum % 2 == 1)
                 {
                     monster.monsAction(user, monster);
                     user.currentStatus();
+                    monster.monsterInfo();
                 }
             }
         }
@@ -64,6 +68,7 @@ namespace class_ex_rpg
         {
             Console.WriteLine($"{monsterName}의 남은 체력은 {health} 공격력은 {attack}입니다.");
         }
+        
     }
     public class Orc : Monster
     {
@@ -87,6 +92,10 @@ namespace class_ex_rpg
         public override void monsDie(Monster monster)
         {
             Console.WriteLine($"{monsterName}을(를) 처치했습니다.");
+        }
+        public override void Talk()
+        {
+            MessageBox.Show("취익취익");
         }
     }
     public class Slime : Monster
@@ -119,6 +128,10 @@ namespace class_ex_rpg
         public override void monsDie(Monster monster)
         {
             Console.WriteLine($"{monsterName}을(를) 처치했습니다.");
+        }
+        public override void Talk()
+        {
+            MessageBox.Show("스르륵");
         }
     }
 }

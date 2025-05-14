@@ -29,12 +29,12 @@ namespace class_ex_rpg
                 if (select == "1")
                 {
                     user.job = "전사";
-                    health += 50;
+                    health += 100;
                     break;
                 }else if (select == "2")
                 {
                     user.job = "마법사";
-                    attack += 3;
+                    attack += 2;
                     break;
                 }else
                 {
@@ -96,25 +96,21 @@ namespace class_ex_rpg
             {
                 Console.WriteLine($"{userName}이(가) 기본 공격을 선택했습니다.");
                 user.baseAttack(user, monster);
-                monster.monsterInfo();
             }
             else if (select == "2")
             {
                 Console.WriteLine($"{userName}이(가) 스킬 공격을 선택했습니다.");
                 user.skillAttack(user, monster);
-                monster.monsterInfo();
             }
             else if (select == "3")
             {
                 Console.WriteLine($"{userName}이(가) 버프를 선택했습니다.");
                 user.buff(user, monster);
-                user.currentStatus();
             }
             else
             {
                 Console.WriteLine("잘못된 입력입니다. 다시 입력해주세요.");
                 user.chooseAct(user, monster);
-                return;
             }
             chooseAct(user, monster);
         }
@@ -130,6 +126,10 @@ namespace class_ex_rpg
         {
             Console.WriteLine($"{userName}이(가) 사망했습니다...");
             Console.WriteLine($"게임을 종료합니다...");
+        }
+        public void LevelUp()
+        {
+
         }
     }
     public class Warrior : User
@@ -187,7 +187,7 @@ namespace class_ex_rpg
         public override void buff(User user, Monster monster)
         {
             Console.WriteLine($"{userName}이(가) 정신을 집중해 공격력을 {this.attack + 5}으로 증가시켰습니다.");
-            this.attack += 3;
+            this.attack += 5;
             monster.monsterAttack(user, monster);
         }
     }

@@ -17,10 +17,11 @@ namespace class_ex_rpg
             InitializeComponent();
 
             User user = new User();
+            NPC npc = new NPC();
 
             Console.Write("이름을 입력하세요: ");
             user.userName = Console.ReadLine();
-
+            npc.Talk(user);
             user.SelectClass(user);
             if (user.job == "전사")
             {
@@ -34,7 +35,10 @@ namespace class_ex_rpg
             user.currentStatus();
 
             Monster monster = Monster.RandomEncounter();
-            if (monster.health != 0)
+            monster.Talk();
+            npc.npcChoice(user, monster, npc);
+
+            if (monster.health != 0 && user.health != 0)
             {
                 user.chooseAct(user, monster);
                 monster.monsterAttack(user, monster);
